@@ -1,4 +1,4 @@
-import __SNOWPACK_ENV__ from '/__snowpack__/env.js';
+import __SNOWPACK_ENV__ from '/meta/env.js';
 import.meta.env = __SNOWPACK_ENV__;
 
 import axios2 from "/web_modules/axios.js";
