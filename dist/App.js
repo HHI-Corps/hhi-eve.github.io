@@ -21,7 +21,7 @@ import {
 
 import { onMount } from "/web_modules/svelte.js";
 import { slide } from "/web_modules/svelte/transition.js";
-import router from "/web_modules/page.js";
+import page from "/web_modules/page.js";
 import XEUtils from "/web_modules/xe-utils.js";
 import * as api from "./api/index.js";
 import NavBar from "./components/NavBar.js";
@@ -41,7 +41,7 @@ function create_fragment(ctx) {
 	let switch_instance;
 	let current;
 	navbar = new NavBar({});
-	var switch_value = /*page*/ ctx[0];
+	var switch_value = /*curPage*/ ctx[0];
 
 	function switch_props(ctx) {
 		return {};
@@ -86,7 +86,7 @@ function create_fragment(ctx) {
 			current = true;
 		},
 		p(ctx, [dirty]) {
-			if (switch_value !== (switch_value = /*page*/ ctx[0])) {
+			if (switch_value !== (switch_value = /*curPage*/ ctx[0])) {
 				if (switch_instance) {
 					group_outros();
 					const old_component = switch_instance;
@@ -130,11 +130,11 @@ function create_fragment(ctx) {
 }
 
 function instance($$self, $$props, $$invalidate) {
-	let page;
-	router("/", () => $$invalidate(0, page = Index));
-	router("/chars", () => $$invalidate(0, page = Characters));
-	router("/register", () => $$invalidate(0, page = Register));
-	router.start();
+	let curPage;
+	page("/", () => $$invalidate(0, curPage = Index));
+	page("/chars", () => $$invalidate(0, curPage = Characters));
+	page("/register", () => $$invalidate(0, curPage = Register));
+	page.start({ hashbang: true });
 	let active = false;
 	let username = "";
 
@@ -147,7 +147,7 @@ function instance($$self, $$props, $$invalidate) {
 		getLoginInfo();
 	});
 
-	return [page];
+	return [curPage];
 }
 
 class App extends SvelteComponent {
