@@ -4,7 +4,8 @@ import.meta.env = __SNOWPACK_ENV__;
 import axios2 from "/web_modules/axios.js";
 const config = {
   baseURL: import.meta.env.SNOWPACK_PUBLIC_API_URL,
-  method: "POST"
+  method: "POST",
+  withCredentials: true
 };
 const request = axios2.create(config);
 export function login(user, pass) {
