@@ -1,1 +1,0 @@
-export default {"SNOWPACK_PUBLIC_API_URL":"https://hhi.ixvin.com/api","MODE":"production","NODE_ENV":"production"};
